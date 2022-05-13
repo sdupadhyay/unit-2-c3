@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web 18 Unit-2 C3</title>
+    <style>
+      #reports > div {
+           width:300px;
+           /* border: solid 1px black; */
+           box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+           margin-right: 20px;
+           margin-top: 50px;
+           margin-left: 20px;
+      
+      }
+      #reports {
+        display: flex;
+       
+      }
+      h1,p,h3,button {
+        margin-left: 40px;
+      }
+      button {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div>
+        <h1>Masai Evaluations Tracker</h1>
+        <form id="form">
+            <!-- When this form get submitted update the DOM According to the question -->
+          <input placeholder="Name" id="name" type="text"  />
+          <select id="batch">
+            <option value="WEB16">WEB16</option>
+            <option value="WEB17">WEB17</option>
+            <option value="WEB18">WEB18</option>
+          </select>
+          <select id="type">
+            <option value="DSA">DSA</option>
+            <option value="Coding">Coding</option>
+          </select>
+          <input placeholder="Student Code" id="stuent_code" type="text" />
+          <select id="unit">
+            <option value="Unit-1">Unit-1</option>
+            <option value="Unit-2">Unit-2</option>
+            <option value="Unit-3">Unit-3</option>
+            <option value="Unit-4">Unit-4</option>
+          </select>
+          <select id="sprint">
+            <option value="Sprint-1">Sprint-1</option>
+            <option value="Sprint-2">Sprint-2</option>
+            <option value="Sprint-3">Sprint-3</option>
+            <option value="Sprint-4">Sprint-4</option>
+          </select>
+          <input placeholder="Score(0-10)" id="score" type="number" />
+          <input type="submit" />
+        </form>
+      </div>
+      <div id="reports">
+        <!-- All the cards that get appended with Javascript on form submit goes here -->
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  document.querySelector("form").addEventListener("submit",start)
+  function start(){
+    event.preventDefault()
+    var nam = document.querySelector("#name").value 
+    var ba = document.querySelector("#batch").value 
+    var ty = document.querySelector("#type").value 
+    var co = document.querySelector("#stuent_code").value 
+    var un = document.querySelector("#unit").value 
+    var sp = document.querySelector("#sprint").value 
+    var sc = document.querySelector("#score").value 
+    //console.log(nam,ba,ty,co,un,sp,sc)
+    var box = document.createElement("div")
+    var name = document.createElement("h1")
+    name.innerText = nam
+    var batch = document.createElement("p")
+    batch.innerText = ba
+    var type = document.createElement("p")
+    type.innerText = ty
+    var code = document.createElement("p")
+    code.innerText = co
+    var unit = document.createElement("p")
+    unit.innerText = un
+    var sprint = document.createElement("p")
+    sprint.innerText =sp
+    var score = document.createElement("p")
+    score.innerText = sc
+    var grade = document.createElement("h3")
+    if(sc<=3){
+      grade.innerText ="Learning"
+      grade.style.color ="red"
+    }
+    else if(sc>3&&sc<=7){
+      grade.innerText ="Acheiving"
+      grade.style.color ="orange"
+    }
+    else{
+      grade.innerText ="Mastery"
+      grade.style.color ="green"
+    }
+    var bt = document.createElement("button")
+    bt.innerText = "Delete"
+    bt.addEventListener("click",d)
+    box.append(name,batch,type,code,sprint,score,unit,grade,bt)
+    document.querySelector("#reports").append(box)
+  }
+  function d(){
+    event.target.parentNode.remove()
+  }
+</script>
+
